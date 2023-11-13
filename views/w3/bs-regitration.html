@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- link css bootstrap Command ' link:css ' -->
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+
+    <!-- link js cnd Command ' script:src ' -->
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+
+    <title>Regitration</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ต้องมี class ก่อนถึงจะใช้ได้ -->
+        <!-- ms-n magin ช้าย -->
+        <!-- me-n magin ขวา -->
+        <!-- mx-n magin ช้ายขวา -->
+        <!-- my-n = magin บนล่าง  -->
+        <!-- mb-n = magin ล่าง -->
+        <!-- mt-n = magin บน -->
+
+        <!-- ต้องมี class ก่อนถึงจะใช้ได้ -->
+        <!-- ps-n padding ช้าย -->
+        <!-- pe-n padding ขวา -->
+        <!-- px-n padding ช้ายขวา -->
+        <!-- py-n = padding บนล่าง  -->
+        <!-- pb-n = padding ล่าง -->
+        <!-- pt-n = padding บน -->
+
+        <h3 class="my-4">Regitration</h3>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control mb-2"> <!-- mb-n = magin ล่าง -->
+
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control mb-2">
+
+        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- radio button : command " bs5-radio-inline " -->
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gander" id="male" value="">
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gander" id="female" value="">
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+
+          <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+          <!-- checkbox command " bs5-form-check "-->
+          
+          <p class="mt-2">Skil</p><!-- mt-n = magin บนล่าง -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="java">
+            <label class="form-check-label" for="java">
+              Java
+
+            </label>
+          </div>
+          <div class="form-check">
+           
+            <input class="form-check-input" type="checkbox" value="" id="python" checked> <!-- checked คืิอ มันจะกดcheckedตลอดเมื่อเปิด -->
+            <label class="form-check-label" for="python">
+              Python
+            </label>
+          </div>
+
+          <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+          <!-- dropdrown command " bs5-dropdown-button "-->
+
+          <!-- Dropdown แบบปกติของ Html -->
+          <div class="dropdown open mb-5">
+
+            <select name="" id="" class="form-control my-2">
+                <option value="">1</option>
+                <option value="">2</option>
+            </select>
+
+            <!-- ---------------------------------------------------------------------------- -->
+            <!-- Dropdown แบบ bs5 -->
+            <button class="btn btn-secondary dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Select
+                    </button>
+            <div class="dropdown-menu" aria-labelledby="triggerId">
+                <button class="dropdown-item" href="#">Action</button>
+                <button class="dropdown-item disabled" href="#">Disabled action</button>
+            </div>
+          </div>
+
+          <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+          <!-- address -->
+          Address
+          <textarea name="" id="" rows="5" class="form-control"></textarea>
+
+          <div  class="text-center my-4">
+            <button class="btn btn-primary">Regitration</button>
+          </div>
+          
+
+    </div>
+
+</body>
+
+</html>

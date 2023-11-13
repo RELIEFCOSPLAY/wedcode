@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Notiflix -->
+    <script src="/public/js/w9/notiflix-aio-3.2.6.min.js"></script>
+    <title>Welcome</title>
+</head>
+
+<body class="p-3">
+    <h1>Admin Page</h1>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success">Add</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblProduct">
+           
+        </tbody>
+    </table>
+
+    <script>
+        const tblProduct = document.querySelector('#tblProduct');
+        // get all products
+        getProducts();
+
+        //---------------GET PRODUCTS-----------------
+        async function getProducts() {
+            // get product data from server
+            try {
+                const response = await fetch('/products');
+                if (response.ok) {
+                    const data = await response.json();
+                    let rows = '';
+                    data.forEach(function (product) {
+                        rows +=`<tr><td>${product.id}</td><td><img src="/public/img/w7_icon/${product.image}"></td><td>${product.name}</td><td>${product.price}</td><td>${product.amount}</td>`
+                        rows += `<td><button class="btn btn-warning">Edit</button>`;
+                        rows += `<button class="btn btn-danger">Delete</button></td></tr>`;
+                    });
+                    tblProduct.innerHTML = rows;
+                }
+                else if(response.status == 500) {
+                   const data = response.text();
+                    throw Error(data);
+                }
+            } catch (err) {
+                console.error(err.message);
+                Notiflix.Report.failure('Error', err.message, 'Close');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Js-input</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <input class="form-control my-2" type="text" placeholder="Enter your name ...">
+        <input class="form-control my-2" type="number" placeholder="Enter your Age ...">
+
+        <select id="gender" class="form-select mb-2">
+            <option value="female">female</option>
+            <option value="male">male</option>
+        </select>
+
+        <div>
+            Color
+        </div>
+        <div class="radio-control">
+            <input type="radio" name="color" value="red">Red
+            <input type="radio" name="color" value="green">Green
+        </div><br>
+
+        <div>
+            Sport
+        </div>
+        <div>
+            <input type="checkbox" name="sport" value="Football">Football
+            <input type="checkbox" name="sport" value="Volleyball">Volleyball
+        </div><br>
+
+        <button class="btn btn-primary">OK</button>
+        <p class="text-danger mp-3"></p>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // click button
+        document.querySelector('button').onclick = function () {
+            // console.log('click')
+            // get input from user
+
+            // username
+            const username = document.querySelector('input[type=text]').value;
+
+            // Age
+            const age = document.querySelector('input[type=number]').value;
+            //convert string to number
+            // let age_number = parseInt(age);
+
+            //convert string to numberFloat
+            let age_number = parseFloat(age);
+
+            // gender select
+            const gender = document.querySelector('#gender').value;
+
+            // color radio
+            const color = document.querySelector('input[name=color]:checked').value;
+
+            // sport checkbox
+            const sport = document.querySelectorAll('input[name=sport]:checked');
+            // convert checkbox
+            let sport_selected = ' ';
+            // for (let i = 0; i < sport.length; i++) {
+            //     // console.log(sport[i].value);
+            //     sport_selected +=  (sport[i].value + " ");
+            // }
+            sport.forEach(function(sp){
+                sport_selected += (sp.value + " ");
+            })
+
+            // Output
+            const output = document.querySelector('p');
+
+            if (username.trim() == '' || age.trim() == '') {
+                // alert('Erorr, No Username');
+                output.innerText = 'Erorr, No Username or Age';
+            }
+            else {
+                // alert(username);
+                let message = '';
+                message += 'Welcome ' + username;
+                message += " <br>Next year you age will be " + (age_number + 1) + " years old";
+                message += '<br>Your are ' + gender;
+                message += '<br> Your selected color is ' + color;
+                message += '<br> Your selected sport is ' + sport_selected;
+                output.innerHTML = message;
+            }
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Random number = 0</h1>
+    <script>
+        const output = document.querySelector('h1');
+
+        //0.00 - 0.99
+        const num = Math.random();
+        let message = '';
+        message += 'Random number = ' + num.toFixed(2);
+
+        
+        const result = Math.floor(num*10)+1;
+
+        //1-10
+        message += '<br>result = ' + result;
+        message += '<br>Random number = ' + Math.floor(Math.random() * 11);
+
+         //1-100
+         message += '<br>Random number = ' + Math.floor(Math.random() * 101);
+
+        output.innerHTML = message;
+
+    </script>
+</body>
+</html>

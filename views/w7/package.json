@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "server": "json-server --watch product.json --port 9000 -H 127.0.0.1"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "name": "wedcode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

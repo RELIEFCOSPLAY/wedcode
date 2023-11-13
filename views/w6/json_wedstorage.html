@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wed Storage</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="name" class="form-control mt-3" disabled>
+        <div class="my-3">
+            <input type="radio" name="gender" value="male" class="form-check-input" disabled> Male
+            <input type="radio" name="gender" value="female" class="form-check-input" disabled> female
+        </div>
+        <button id="btnEdit" class="btn btn-primary">Edit</button>
+        <button id="btnReset" class="btn btn-danger">Reset</button>
+    </div>
+
+    <script>
+        // read data from wed storage
+        const data = localStorage.user;
+
+        //if data exitsts, we display it to UI
+        if (data !== undefined) {
+            //Converting 
+            const jsData = JSON.parse(data);
+            document.querySelector('#name').value = jsData.name;
+            //check the female radio
+            const radioGender = document.querySelector('input[type=radio][value=female]').checked = true;
+            if (jsData.gender == 'male') {
+                // check the male radio
+                document.querySelector('input[type=radio][value=male]').checked = true;
+            }
+        }
+
+        // ----------------------------------- edit button ----------------------------------------------!
+        //------------ enable all inputs ----------------
+
+        //edit button
+        const btnEdit = document.querySelector('#btnEdit');
+        btnEdit.onclick = () => {
+
+            // ---------------------------- enable all input -------------------------
+            if (btnEdit.innerText == 'Edit') {
+
+                // enable text input
+                const txtName = document.querySelector('#name');
+                txtName.disabled = false;
+
+                // enable radio button
+                const radioGender = document.querySelectorAll('input[type=radio][name=gender]');
+                radioGender.forEach((radio) => {
+                    radio.disabled = false;
+                });
+
+                //change button's title to Save
+                btnEdit.innerText = 'Save';
+            }
+
+            else {
+
+                // get inputs
+                const username = document.querySelector('#name').value;
+                const gender = document.querySelector('input[name=gender]:checked').value;
+                // alert(username + " " + gender);
+
+                // save to wed Storage
+                const user = { "name": username, "gender": gender };
+                const userJSON = JSON.stringify(user);
+                localStorage.user = userJSON;
+
+                //change button's title to Edit
+                btnEdit.innerText = 'Edit';
+
+                // ------------ disable all inputs ---------------
+                //disable text input
+                const txtName = document.querySelector('#name');
+                txtName.disabled = true;
+
+                //disable radio button
+                const radioGender = document.querySelectorAll('input[type=radio][name=gender]');
+                radioGender.forEach((radio) => {
+                    radio.disabled = true;
+                });
+            }
+        }
+
+        //------------------------------------ reset button -----------------------------------!
+        document.querySelector('#btnReset').onclick = () => {
+
+            //clear the input
+            //remove the wed storage
+            localStorage.removeItem('user');
+            
+            //reload the page
+            window.location.reload();
+        }
+
+
+    </script>
+</body>
+
+</html>

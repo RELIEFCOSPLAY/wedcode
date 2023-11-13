@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container mx-5 my-5">
+        <input id="username" type="text" class="form-control my-2" placeholder="Username" required>
+        <input id="password" type="password" class="form-control my-2" placeholder="Password" required>
+
+        <div class="my-3">
+            <input type="checkbox" id="cb_remember" class="form-check-input"> Remember me
+        </div>
+
+        <button class="btn btn-primary">Login</button>
+
+        <div id="alert-login" class="alert alert-danger mt-3" style="display: none;">
+            Wrong login
+        </div>
+
+        <script>
+            if( localStorage.username != undefined || sessionStorage.username != undefined){
+                window.location.replace('welcome_JSON.html')
+            }
+            document.querySelector('button').addEventListener('click', () =>{
+                // alert('ok');
+                const username = document.querySelector('#username').value;
+                const password = document.querySelector('#password').value;
+
+                // alert(username + " " + password);
+
+                if(username.trim() == 'admin' && password.trim() == '1111' ){
+
+                    //save username for using later and send to next page
+
+                    //sessionStorage ปิดpageแล้วค่าหาย
+                    // sessionStorage.setItem('username', username);
+                    // sessionStorage.username = username;
+
+                    // remember me
+                    const cb_remember = document.querySelector('#cb_remember');
+                    if(cb_remember.checked){
+                        // alert('check');
+                        localStorage.username = username;
+                    }else{
+                        sessionStorage.username = username;
+                    }
+
+                    // localStorage ปิดpageแล้วค่าไม่หาย
+                    // localStorage.username = username;
+
+                    // jump tto welcome page
+                    window.location.replace('welcome_JSON.html')
+                }else{
+                    document.querySelector('#alert-login').style.display = 'block';
+                }
+
+            });
+        </script>
+    </div>
+</body>
+</html>

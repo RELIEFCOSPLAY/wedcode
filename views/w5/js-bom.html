@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-Bom</title>
+</head>
+<body>
+    <!-- DOM: Document Object Model -->
+    <!-- BOM: Browser Object Model -->
+    <h1>Page1 </h1>
+    <!-- <a href="js-bom2.html">Page2</a> -->
+    <button>Page2</button>
+    
+    <script>
+        document.querySelector('button').onclick = function(){
+            // alert('test')
+            //  window = ไปหน้าอื่น
+            // window.location.assign('js-bom2.html');
+            // window.location.href = "js-bom2.html";
+            
+            // window.location.replace('js-bom2.html');// ไปแล้วกลับไม่ได้ ไม่มี history
+
+            window.location.reload();//สั่งไห้loadหน้าใหม่ทั้งหมด
+        }
+    </script>
+</body>
+</html>

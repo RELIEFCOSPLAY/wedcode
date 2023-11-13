@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converting</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <!-- <div class="container">
+<h3 id="jsonString"></h3>
+<h4 id="name"></h4>
+<input type="radio" name="gender" value="male" class="form-check-input" checked> male
+<input type="radio" name="gender" value="female" class="form-check-input"> female
+</div> -->
+
+    <select id="students" class="form-select">
+        <!-- <option value=""></option> -->
+    </select>
+
+    <button class="btn btn-success">OK</button>
+
+    <script>
+        // const json = '{"name":"Lora", "gender":"female"}';
+        // document.querySelector('#jsonString').innerText = json;
+
+        // // convert JSON to Js object
+        // const jsObject = JSON.parse(json);
+        // // console.log( jsObject.name);
+        // // console.log( jsObject.female);
+        // document.querySelector('#name').innerText = jsObject.name;
+
+        // // Check the radio based on JSON
+        // if(jsObject.gender === "female"){
+        //     document.querySelector('input[name=gender][value=female]').checked = true;
+        // }
+
+
+        const json_students = '[{"name": "Nijika"},{"name":"Bocchi"},{"name":"Ryo"},{"name":"Ikuyo"}]';
+        const students = JSON.parse(json_students);
+        // console.log(students[0].name);
+
+        let data = '';
+        students.forEach(function (stu) {
+            // data += '<option>' + stu.name + '</option>';
+            data += `<option>${stu.name}</option>`;
+        });
+
+        document.querySelector('#students').innerHTML = data;
+
+        document.querySelector('button').onclick = function () {
+
+            const name_selecter = document.querySelector('#students').value;
+            alert(name_selecter);
+        }
+    </script>
+</body>
+
+</html>

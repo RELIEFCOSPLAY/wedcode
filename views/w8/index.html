@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="mx-5 my-5">
+    <!-- <img src="/public/img/icon/bocchiicon.jpg" alt="clock">
+    <h1>Home Page</h1> -->
+    <form id="formLogin">
+        <input class="form-control mt-2" type="text" name="username" placeholder="Username">
+        <input class="form-control my-2" type="password" name="password" placeholder="Password">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <script>
+        const formLogin = document.querySelector('#formLogin')
+        formLogin.onsubmit = async function (e) {
+            e.preventDefault();
+            //get input
+            // const username = document.querySelector('#username').value;
+            // const password = document.querySelector('#password').value;
+            const username = formLogin.elements['username'].value;
+            const password = formLogin.elements['password'].value;
+            // console.log(username,password);
+
+            try {
+
+                // const response = await fetch(`/login/${username}/${password}`);
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content_Type': 'application/json' },
+                    body: JSON.stringify({ "username": username, "password": password })
+                }
+                const response = await fetch(`/login`, options);
+                if (response.ok) {
+                    const data = await response.text();
+                    alert(data);
+                    // document.querySelector('h1').innerText = data;
+                }
+                else if (response.status == 401) {
+                    const data = await response.text();
+                    throw Error(data);
+                }
+                else {
+                    throw ('Connection error');
+                }
+            } catch (err) {
+                console.log(err);
+                alert(err.message);
+            }
+
+            // fetch('/now').then(function (response) {
+            //     if (response.ok) {
+            //         return response.text();
+            //     }
+            //     else {
+            //         throw ('Connection error');
+            //     }
+
+            // })
+            //     .then(function (data) {
+            //         // console.log(data);
+            //         document.querySelector('h1').innerText = data;
+            //     })
+            //     .catch(function (err) {
+            //         console.log(err);
+            //         alert(err);
+            //     })
+        }
+
+    </script>
+</body>
+
+</html>

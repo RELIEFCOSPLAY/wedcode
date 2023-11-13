@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/public/js/w9/notiflix-aio-3.2.6.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="formLogin">
+            <input type="text" class="form-control mt-3" name="txtUsername" placeholder="Username" required>
+            <input type="password" class="form-control my-2" name="txtPassword" placeholder="Password" required>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const formLogin = document.querySelector('#formLogin');
+        formLogin.onsubmit = async function (e) {
+            e.preventDefault();
+            const username = formLogin['txtUsername'].value;
+            const password = formLogin['txtPassword'].value;
+
+            // console.log(username, password);
+            try {
+                const options = {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({"username":username, "password":password}),
+                };
+                const response = await fetch ('/login', options);
+                if (response.ok) {
+                    const data = await response.text();
+                    location.replace(data);
+                    // alert(data);
+                    // Notiflix.Report.success('Success', data, 'OK');
+                }
+                else if(response.status == 401) {
+                    const data = await response.text();
+                    throw Error(data);
+                }
+                else {
+                    throw Error('Connection error');
+                }
+            } catch (err) {
+                console.error(err.message);
+                // alert(err.message);
+                Notiflix.Report.failure('Error', err.message, 'Close');
+            }
+        }
+    </script>
+</body>
+
+</html>

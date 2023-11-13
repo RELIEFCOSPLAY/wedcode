@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        app.put("/products/:id", function (req, res) {
+            const id = req.params.id;
+            // const {name, price, amount} = req.body;
+            // const updateProduct = {name: name, price: price, amount: amount};
+            const updateProduct = req.body;
+            const sql = "UPDATE product SET ? WHERE id = ?";
+            con.query(sql, [updateProduct, id], function (err, results) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send("Database server error");
+                }
+                if (results.affectedRows != 1) {
+                    console.error('Row updated is not 1');
+                    return res.status(500).send("Update failed");
+                }
+                res.send("Update succesfully");
+            });
+        }); 
+    </script>
+</body>
+
+</html>

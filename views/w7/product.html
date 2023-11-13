@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>MFU Shop</h1>
+        <div class="d-flex flex-wrap" id="product"></div>
+    </div>
+
+    <script>
+
+        // get data from server // check error connection
+        fetch('http://127.0.0.1:9000/products')
+            .then(
+                // รอการเชื่อมต่อ
+                function (response) {
+                    // if server return status code 200
+                    if (response.ok) {
+                        // alert('ok');
+                        return response.json();
+                    }
+                    else {
+                        // alert('erorr');
+                        throw Error('connection error');
+                    }
+                }
+                // รอแปลงข้อมูล
+            ).then(function (data) {
+                // console.log(data)
+                // alert(data[0].id)
+                showProduct(data);
+            })
+            // do anything with error
+            .catch(function (err) {
+                console.error(err.message);
+                alert(err);
+            });
+
+        const product = document.querySelector('#product');
+
+        // ==================== GET Products ====================
+        function showProduct(data) {
+            let product_detail = '';
+           data.forEach(function(p){
+            product_detail += '<div class="card me-3 mt-3">';
+            product_detail += '<div class="card-body">';
+            product_detail += `<img src="/public/img/w7_icon/${p.image}" >`;
+            product_detail += `<h3>${p.name}</h3>`;
+            product_detail += `<h5>price = ${p.price}</h5>`;
+            product_detail += '<button class="btn btn-primary">Add</button>';
+            product_detail += '</div>';
+            product_detail += '</div>';
+           })
+            product.innerHTML = product_detail;
+        }
+
+     
+
+    </script>
+</body>
+
+</html>

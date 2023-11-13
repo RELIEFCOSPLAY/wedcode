@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-bom2</title>
+</head>
+<body>
+    <h1>Page2</h1>
+    <button>Back</button>
+
+    <script>
+        document.querySelector('button').onclick = function(){
+            // window.history.back();// กลับไปPageล่าสุดที่มีhistory
+            window.history.go(-1); //กลับไปได้ตามจำนวนหน้าที่กำหนด
+            
+        }
+    </script>
+</body>
+</html>

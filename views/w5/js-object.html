@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-dinamic</title>
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="mx-5 my-5">
+
+    <!-- <h3 id="name">Name: </h3>
+    <h3 id="age">Age: </h3>
+    <h3 id="gender">Gender:</h3> -->
+    <!-- <h3 id="active">Active: </h3> -->
+    <!-- <div>
+        <input type="checkbox" id="active" value="active">
+        <label for="active">Active</label>
+    </div> -->
+
+    <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- auto HTML dynamic of for
+    <div id="content"></div> -->
+
+    <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- table  dynamic-->
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Name</th><th>Age</th><th>Gender</th><th>Active</th></tr>
+        </thead>
+        table_body
+    </table>
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+    <script>
+        //  -- JS object data --
+        const students = [
+            {
+                name: 'Bocchi',
+                age: 18,
+                gender: 'female',
+                active: true
+            },
+            {
+                name: 'NIjika',
+                age: 17,
+                gender: 'female',
+                active: false
+            },
+            {
+                name: 'ikuyo',
+                age: 17,
+                gender: 'female',
+                active: true
+            },
+            {
+                name: 'Ryo',
+                age: 18,
+                gender: 'female',
+                active: false
+            }
+        ];
+        //----------------------------------------------------------------------------------------------------------------------------
+        const content = document.querySelector('#content');
+        
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // use loop to genrate dynamic HTML
+        // let data = '';
+        //    for (let i = 0; i<students.length; i++) {
+        //     data = data + `<h3>Name: ${students[i].name}</h3>`
+        //     data = data + `<h3>Age: ${students[i].age}</h3>`
+        //     data = data + `<h3>Gender: ${students[i].gender}</h3>`
+        //     // === คือ same value and same datatype
+        //     if(students[i].active === true){
+        //         data = data + `<div><input type=checkbox checked>active</div>`;
+        //     }
+        //     else{
+        //         data = data + `<div><input type=checkbox>active</div>`;
+        //     }
+        //     data += '<hr>'
+        //    }
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // forEach
+        // students.forEach(function(stu){
+        //     data = data + `<h3>Name: ${stu.name}</h3>`
+        //     data = data + `<h3>Age: ${stu.age}</h3>`
+        //     data = data + `<h3>Gender: ${stu.gender}</h3>`
+        //     // === คือ same value and same datatype
+        //     if(stu.active === true){
+        //         data = data + `<div><input type=checkbox checked>active</div>`;
+        //     }
+        //     else{
+        //         data = data + `<div><input type=checkbox>active</div>`;
+        //     }
+        //     data += '<hr>'
+        // })
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // for of
+        //    for(stu of students){
+        //         data = data + `<h3>Name: ${stu.name}</h3>`
+        //         data = data + `<h3>Age: ${stu.age}</h3>`
+        //         data = data + `<h3>Gender: ${stu.gender}</h3>`
+        //         // === คือ same value and same datatype
+        //         if(stu.active === true){
+        //             data = data + `<div><input type=checkbox checked>active</div>`;
+        //         }
+        //         else{
+        //             data = data + `<div><input type=checkbox>active</div>`;
+        //         }
+        //         data += '<hr>'
+        //     }
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // -- table loop--
+        const table_body_output = document.querySelector('#table_body');
+        let data ='';
+        for(stu of students){
+            data += `<tr><td>${stu.name}</td>`;
+                data+= `<td>${stu.age}</td>`;
+                data += `<td>${stu.gender}</td>`;
+                if(stu.active){
+                    data += `<td> <input type="checkbox" class="form-check-input" checked> </td></tr>`;
+                }
+                else{
+                    data += `<td> <input type="checkbox" class="form-check-input"> </td></tr>`;
+                }
+                
+        }
+        table_body_output.innerHTML = data;
+    
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // content output
+        // content.innerHTML = data;
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        // document.querySelector('#name').innerText = 'Name: ' + students[1].name;
+        // document.querySelector('#age').innerText = 'Age: ' + students[1].age;
+        // document.querySelector('#gender').innerText = 'Gender: ' + students[1].gender;
+        // // document.querySelector('#active').checked = 'Active: ' + student.active;
+        // document.querySelector(`#active`).checked = students[1].active;
+    </script>
+</body>
+
+</html>
