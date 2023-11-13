@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/bootstrap-css/bootstrap.min.css">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/public/js/w9/notiflix-aio-3.2.6.min.js"></script>
+    <title>U</title>
+</head>
+
+<body>
+    <div class="container">
+        <form id="filetoupload" enctype="multipart/form-data">
+            <input type="text" name="username" class="form-control mt-3" placeholder="Username">
+            <input type="file" class="form-control my-2 " name="filetoupload">
+            <button type="submit" class="btn btn-outline-primary"> Upload</button>
+        </form>
+    </div>
+
+    <script>
+        const fromUpload = document.querySelector('#formUpload');
+        fromUpload.onsubmit = function (e) {
+            e.preventDefault();
+        }
+        if (filetoupload.files.length == 0) {
+            alert("no files selected");
+            return;
+        }
+        // const formData = new FormData(this);
+
+        async function upload(fromData) {
+            try {
+                const option = {
+                    method: 'POST',
+                    body: fromData
+                }
+                const response = await fetch('/uploading', option);
+                if (response.ok) {
+                    const data = await response.text();
+                }
+                else {
+                    throw Error('Upload failed');
+                }
+            } catch (error) {
+
+            }
+        }
+    </script>
+</body>
+
+</html>
