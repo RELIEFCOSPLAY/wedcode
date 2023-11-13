@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const upload = require("./config/upload");
+const upload = require("./config/upload.js");
 
 const app = express();
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -14,8 +14,8 @@ app.post("/uploading", function (req, res) {
       console.error(err);
       return res.status(500).send("Uplod Error");
     }
-    console.log(res.body.username);
-    console.log(res.file.filename);
+    console.log(req.body.username);
+    console.log(req.file.filename);
     res.send("Uplod done");
   });
 });
