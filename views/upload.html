@@ -21,17 +21,17 @@
     </div>
 
     <script>
-        const fromUpload = document.querySelector('#formUpload');
+        const fromUpload = document.querySelector('#filetoupload');
         fromUpload.onsubmit = function (e) {
             e.preventDefault();
             
-            const fromData = new fromData(this);
+            const fromData = new FormData(this);
             upload(fromData);
         }
-        if (filetoupload.files.length == 0) {
-            alert("no files selected");
-            return;
-        }
+        // if (filetoupload.files.length == 0) {
+        //     alert("no files selected");
+        //     return;
+        // }
         // const formData = new FormData(this);
 
         async function upload(fromData) {

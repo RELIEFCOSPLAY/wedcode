@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const upload = require("./config/upload.js");
+const upload = require("./config/upload");
 
 const app = express();
 app.use("/public", express.static(path.join(__dirname, "public")));
