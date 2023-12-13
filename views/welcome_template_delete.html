@@ -11,7 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Notiflix -->
     <script src="/public/js/w9/notiflix-aio-3.2.6.min.js"></script>
-    <script src="/public/js/sweetalert2.all.min.js"></script>
+    <!-- <script src="/public/js/sweetalert2.all.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <title>Welcome</title>
 </head>
 
@@ -81,7 +82,7 @@
 
         const tblProduct = document.querySelector('#tblProduct');
         // get all products
-        
+
 
         //---------------GET USER-----------------
         async function getUser() {
@@ -138,11 +139,12 @@
         }
 
         async function deleteProduct(id) {
-            const options = {
-                method: 'DELETE'
-            }
+            // console.log(id);
+            // const options = {
+            //     method: 'DELETE'
+            // }
             try {
-                const response = await fetch('/products/' + id, options);
+                const response = await fetch(`/products/${id}` ,{ method: 'DELETE' });
                 if (response.ok) {
                     const data = await response.text();
                     Notiflix.Report.success('Success', data, 'Close');
@@ -155,9 +157,36 @@
                 }
             } catch (err) {
                 console.error(err.message);
-                Notiflix.Report.failure('Error', err.message, 'Close');
+                Notiflix.Report.failure('Error', err.message+ "Erorr", 'Close');
             }
         }
+
+        //---------------DELETE a product 2-----------------
+
+        function deleteProduct2(id) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: "Sure to delete this product?",
+                showCancelButton: true,
+                confirmButtonText: 'Yes'
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    fetch(`/products/${id}`, { method: 'DELETE' })
+                        .then(function (response) {
+                            if (response.ok) {
+                                // get updated data
+                                getProducts();
+                            }
+                        })
+                        .catch(function (err) {
+                            console.error(err);
+                            alert(err);
+                        });
+                }
+            });
+        }
+
 
         //---------------ADD NEW PRODUCT-----------------
         const formProduct = document.querySelector('#formProduct');

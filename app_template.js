@@ -83,22 +83,22 @@ app.post("/products", function (req, res) {
   });
 });
 
-// // ------------- DELETE a product --------------
-// app.delete("/products/:id", function (req, res) {
-//   const id = req.params.id;
+// ------------- DELETE a product --------------
+app.delete("/products/:id", function (req, res) {
+  const id = req.params.id;
 
-//   const updateProduct = req.body;
-//   const sql = "UPDATE product SET ? WHERE id = ?";
-//   con.query(sql, [req.params.id], function (err, results) {
-//     if (err) {
-//       res.status(500).send("Database server error");
-//     } else if (results.affectedRows != 1) {
-//       res.status(500).send("Delete failed");
-//     } else {
-//       res.send("Delete complete");
-//     }
-//   });
-// });
+  const updateProduct = req.body;
+  const sql = "DELETE FROM product WHERE id = ?";
+  con.query(sql, [id], function (err, results) {
+    if (err) {
+      res.status(500).send("Database server error");
+    } else if (results.affectedRows != 1) {
+      res.status(500).send("Delete failed");
+    } else {
+      res.send("Delete complete");
+    }
+  });
+});
 
 // ------------- GET all products --------------
 app.get("/products", function (_req, res) {
